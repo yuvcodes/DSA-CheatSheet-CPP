@@ -1,17 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 /*
-map<key, value> -> sorted with key
-map<pair<>>		-> complex maps also exist
-mp["x"] = y 	-> insertion in map
-mp[x]			-> access
-auto &pair		-> traverse map
-mp.find(x) != mp.end() -> find an element
-size()			-> size of map
-
---------------------------------
-same syntax and functions below as ordered map
-unordered_map<Key, Value>   → Key-value store (no order)
+map<Key, Value>             → Key-value store (sorted by keys)
 
 insert({key, value})        → Insert pair
 map[key] = value            → Add or update value
@@ -22,8 +12,8 @@ erase(key)                  → Deletes key
 size()                      → Number of elements
 empty()                     → Check if empty
 begin(), end()              → Iterators for loop
-Keys are not sorted         → Faster (Average O(1)), uses hashing
-Needs hashable key type     → No complex keys like pair<int, pair<int,int>> (use map instead)
+Keys are sorted             → Slower (Average O(log n)), uses balanced BST
+No need for hashable key    → Works with complex types (e.g., pair<int, pair<int, int>>)
 */
 
 int main() {
@@ -63,10 +53,9 @@ int main() {
 
     cout << "Is map empty? " << (mp.empty() ? "Yes" : "No") << endl;
 
-	// mixed maps
-
-	// Define the map with pair of pairs as the key and an int as the value
-        map<pair<int, pair<int, int>>, int> myMap;
+	// complex maps
+ 	// Define the map (unordered_map wont work) with pair of pairs as the key and an int as the value
+    map<pair<int, pair<int, int>>, int> myMap;
 
         // Insert elements
         myMap[{1, {2, 3}}] = 100;  // key = {1, {2, 3}}, value = 100
@@ -75,7 +64,7 @@ int main() {
 
         // Access and print elements
         // entire pair is the key (so unique otherwise will be overriden)
-        for (auto &entry : myMap) {
+        for (auto &entry v: myMap) {
             cout << "Key: {" << entry.first.first << ", {"
                  << entry.first.second.first << ", "
                  << entry.first.second.second << "}}, Value: "
