@@ -18,3 +18,6 @@ int main() {
 
     return 0;
 }
+
+// output:
+// Top element (Min-Heap): 5
